@@ -61,8 +61,8 @@ def add_new_member():
 @app.route('/member/<int:member_id>', methods=['DELETE'])
 def delete_member(member_id):
     try:
-        deleted_member = jackson_family.delete_member(member_id)
-        if deleted_member == "Member not found":
+        success = jackson_family.delete_member(member_id)
+        if not success:
             return jsonify({"error":"Member not found"}), 404
         return jsonify({"done":True}), 200
     except Exception as e:
